@@ -84,21 +84,9 @@ For **Docker Linux Container**, use below commands:
 
 ## Quick Example
 
-```javascript
-var ibmdb = require('ibm_db');
-
-ibmdb.open("DATABASE=<dbname>;HOSTNAME=<myhost>;UID=db2user;PWD=password;PORT=<dbport>;PROTOCOL=TCPIP", function (err,conn) {
-  if (err) return console.log(err);
-  
-  conn.query('select 1 from sysibm.sysdummy1', function (err, data) {
-    if (err) console.log(err);
-    else console.log(data);
-
-    conn.close(function () {
-      console.log('done');
-    });
-  });
-});
+```
+library(RIBMDB)
+channel <- odbcConnect("<dbname>","<uid>","<pwd>")
 ```
 
 ## Un-Install
@@ -121,7 +109,8 @@ If no solution found, you can open a new issue on github or start a new topic in
 The simple api is based on the instances of `Database` class. You may get an 
 instance by one of the following ways:
 
-```library(RIBMDB)
+```
+library(RIBMDB)
 ```
 
 ## Build Options
@@ -137,7 +126,7 @@ Standard R debugging. Refer https://support.rstudio.com/hc/en-us/articles/205612
 * Rocket Software
 * IBM
 
-## Contributing to the node-ibm_db
+## Contributing to the RIBMDB
 
 [Contribution Guidelines](https://github.com/ibmdb/RIBMDB/blob/master/contributing/CONTRIBUTING.md)
 
