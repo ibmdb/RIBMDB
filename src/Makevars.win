@@ -1,0 +1,2 @@
+PKG_CPPFLAGS=-I$(R_HOME)/clidriver/include -I.
+PKG_LIBS=-L$(R_HOME)/clidriver/bin -ldb2app64
