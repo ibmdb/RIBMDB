@@ -39,25 +39,12 @@ For **Docker Linux Container**, use below commands:
 
 ### Important Environment Variables and Download Essentials 
 
-`RIBMDB_HOME :`
+While installing, the driver downloads and installs the CLI driver from below URL if the same is not present in the system/environment variable.
 
-- USE:
-	- On distributed platforms, set this environment variable if you want to avoid downloading of clidriver from the [IBM Hosted URL](#downloadCli) or from the internet.
-	
-- HOW:
-	- On distributed platforms, set **RIBMDB_HOME** environment variable to a pre-installed **db2 client or server installation directory**.
-	
+If you don't want the installer to download the CLI driver, you can download the same or copy from alternate source rather than below to your system's R.Home() directory.
+The path should look like `<R_HOME>/clidriver`
 
-`RIBMDB_INSTALLER_URL :`
-
-- USE:
-	- Set this environment variable to by-pass the IBM Hosted URL for downloading odbc/clidriver.
-
-- HOW:
-	- Set **RIBMDB_INSTALLER_URL** environment variable with alternate odbc/clidriver downloading URL link or with locally downloaded "tar/zipped clidriver's parent directory path.
-
-- TIP:
-	- If you don't have alternate hosting URL then, you can download the tar/zipped file of clidriver from the [IBM Hosted URL](#downloadCli) and can set the **RIBMDB_INSTALLER_URL** environment variable to the downloaded "tar/zipped clidriver's" parent directory path. No need to untar/unzip the clidriver and do not change the name of downloaded file.
+Else, Download the driver in your selected directory and set the `IBM_DB_HOME` Environment variable for the same to be used.
 
 ### <a name="downloadCli"></a> Download clidriver ([based on your platform & architecture](#systemDetails)) from the below IBM Hosted URL:
 > [DOWNLOAD CLI DRIVER](https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/)

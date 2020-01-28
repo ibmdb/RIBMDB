@@ -1,2 +1,2 @@
-PKG_CPPFLAGS=-I$(R_HOME)/clidriver/include -I.
-PKG_LIBS=-L$(R_HOME)/clidriver/bin -ldb2app64
+PKG_CPPFLAGS=-I$(R_HOME)/clidriver/include -I$(IBM_DB_HOME)/clidriver/include -I.
+PKG_LIBS=-L$(R_HOME)/clidriver/bin -L$(IBM_DB_HOME)/clidriver/bin -ldb2app64
