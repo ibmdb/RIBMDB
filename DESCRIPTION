@@ -2,7 +2,7 @@ Package: RIBMDB
 Version: 1.0-20
 Revision: $Rev: 3500 $
 Date: 2019-09-02
-Authors@R: c(person("Binit", "Kumar", role = c("aut", "cre"),
+Authors@R: c(person("ROCKET", "SOFTWARE", role = c("aut", "cre"),
                     email = "bkumar@rocketsoftware.com"))
 Title: DB2 Database Access
 Description: An ODBC database interface for DB2.
@@ -14,7 +14,7 @@ Biarch: yes
 License: GPL-2 | GPL-3
 NeedsCompilation: yes
 Packaged: 2020-01-22 06:32:03 UTC
-Author: Binit Kumar [aut, cre]
-Maintainer: Binit Kumar <bkumar@rocketsoftware.com>
+Author: ROCKET SOFTWARE [aut, cre]
+Maintainer: ROCKET SOFTWARE <bkumar@rocketsoftware.com>
 Repository: CRAN
 Date/Publication: 2020-01-23 05:28:45 UTC
