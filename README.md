@@ -6,22 +6,22 @@ An asynchronous/synchronous interface for R to IBM DB2
 
 ## API Documentation
 
-> For complete list of ibm_db APIs and example, please check ****
+> For complete list of RIBMDB APIs and example, please refer `/inst/doc/RIBMDB.pdf`
 
 ## Prerequisite
 
 - Make sure your system has C++ compiler installed that support C++11 standard.
 
-- For non-windows platforms: gcc compiler version >= 4.8.3 is required to install `ibm_db`. Default compiler on RHEL 6 does not have the required support.
+- For non-windows platforms: gcc compiler version >= 4.8.3 is required to install `RIBMDB`. Default compiler on RHEL 6 does not have the required support.
 Install a newer compiler or upgrade older one.
 
-- For Windows: compiler is optional as `ibm_db` comes with pre-compiled binary on Windows64 for R version >= 3.x. To compile code on Windows, VC++ 2015.3 v14.00 (v140) or Visual Studio 2017 is required.
+- For Windows: compiler is optional as `RIBMDB` comes with pre-compiled binary on Windows64 for R version >= 3.x. To compile code on Windows, VC++ 2015.3 v14.00 (v140) or Visual Studio 2017 is required.
 
-- On distributed platforms, you do need not to install any Db2 ODBC client driver for connectivity. `ibm_db` itself downloads and installs an odbc/cli driver from IBM website during installation. Just install `ibm_db` and it is ready for use.
+- On distributed platforms, you do need not to install any Db2 ODBC client driver for connectivity. `RIBMDB` itself downloads and installs an odbc/cli driver from IBM website during installation. Just install `RIBMDB` and it is ready for use.
 
-- Recommended version of R is >= V3.X. to install `ibm_db` on Windows.
+- Recommended version of R is >= V3.X. to install `RIBMDB` on Windows.
 
-- The latest R version using which `ibm_db` is tested: 3.6.1
+- The latest R version using which `RIBMDB` is tested: 3.6.1
 
 ## Install
 
@@ -39,25 +39,25 @@ For **Docker Linux Container**, use below commands:
 
 ### Important Environment Variables and Download Essentials 
 
-`IBM_DB_HOME :`
+`RIBMDB_HOME :`
 
 - USE:
 	- On distributed platforms, set this environment variable if you want to avoid downloading of clidriver from the [IBM Hosted URL](#downloadCli) or from the internet.
 	
 - HOW:
-	- On distributed platforms, set **IBM_DB_HOME** environment variable to a pre-installed **db2 client or server installation directory**.
+	- On distributed platforms, set **RIBMDB_HOME** environment variable to a pre-installed **db2 client or server installation directory**.
 	
 
-`IBM_DB_INSTALLER_URL :`
+`RIBMDB_INSTALLER_URL :`
 
 - USE:
 	- Set this environment variable to by-pass the IBM Hosted URL for downloading odbc/clidriver.
 
 - HOW:
-	- Set **IBM_DB_INSTALLER_URL** environment variable with alternate odbc/clidriver downloading URL link or with locally downloaded "tar/zipped clidriver's parent directory path.
+	- Set **RIBMDB_INSTALLER_URL** environment variable with alternate odbc/clidriver downloading URL link or with locally downloaded "tar/zipped clidriver's parent directory path.
 
 - TIP:
-	- If you don't have alternate hosting URL then, you can download the tar/zipped file of clidriver from the [IBM Hosted URL](#downloadCli) and can set the **IBM_DB_INSTALLER_URL** environment variable to the downloaded "tar/zipped clidriver's" parent directory path. No need to untar/unzip the clidriver and do not change the name of downloaded file.
+	- If you don't have alternate hosting URL then, you can download the tar/zipped file of clidriver from the [IBM Hosted URL](#downloadCli) and can set the **RIBMDB_INSTALLER_URL** environment variable to the downloaded "tar/zipped clidriver's" parent directory path. No need to untar/unzip the clidriver and do not change the name of downloaded file.
 
 ### <a name="downloadCli"></a> Download clidriver ([based on your platform & architecture](#systemDetails)) from the below IBM Hosted URL:
 > [DOWNLOAD CLI DRIVER](https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/)
@@ -70,12 +70,6 @@ For **Docker Linux Container**, use below commands:
 |              |  others        |aix64_odbc_cli.tar.gz    |  Yes         |
 |Darwin        |  x64           |macos64_odbc_cli.tar.gz  |  Yes         |
 |Linux         |  x64           |linuxx64_odbc_cli.tar.gz |  Yes         |
-|              |  s390x         |s390x64_odbc_cli.tar.gz  |  Yes         |
-|              |  s390          |s390_odbc_cli.tar.gz     |  Yes         |
-|              |  ppc64  (LE)   |ppc64le_odbc_cli.tar.gz  |  Yes         |
-|              |  ppc64         |ppc64_odbc_cli.tar.gz    |  Yes         |
-|              |  ppc32         |ppc32_odbc_cli.tar.gz    |  Yes         |
-|              |  others        |linuxia32_odbc_cli.tar.gz|  Yes         |
 |Windows       |  x64           |ntx64_odbc_cli.zip       |  Yes         |
 |              |  x32           |nt32_odbc_cli.zip        |  Yes         |
 
@@ -91,12 +85,12 @@ channel <- odbcConnect("<dbname>","<uid>","<pwd>")
 
 ## Un-Install
 
-To uninstall node-ibm_db from your system, just delete the RIBMDB or ibm_db directory.
+To uninstall node-RIBMDB from your system, just delete the RIBMDB or RIBMDB directory.
 
 
 ## Need Help?
 
-If you encountered any issue with ibm_db, first check for existing solution or
+If you encountered any issue with RIBMDB, first check for existing solution or
 work-around under `issues` or on google groups forum. Links are:   
     
 https://github.com/ibmdb/RIBMDB/issues    
@@ -104,7 +98,7 @@ https://groups.google.com/forum/#!forum/RIBMDB
    
 If no solution found, you can open a new issue on github or start a new topic in google groups.
 
-## How to get ibm_db instance?
+## How to get RIBMDB instance?
 
 The simple api is based on the instances of `Database` class. You may get an 
 instance by one of the following ways:
