@@ -1,0 +1,3 @@
+Rscript "R/CLIDriver_installer.R"
+#Rscript "C:\\Users\\bkumar\\OneDrive - Rocket Software, Inc\\Documents\\RODBCDWNLD\\R\\ODBC_installer.R"
+cp src/config.h.win src/config.h
