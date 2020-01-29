@@ -6,14 +6,13 @@ install_R_ibm_db = function(installerURL)
   endian = .Platform$endian
   
   env = Sys.getenv("IBM_DB_HOME")
-  
-  if(!(length(env)==1) || dir.exists(paste(DOWNLOAD_DIR,"/clidriver",sep=""))){
-    
-      IS_ENVIRONMENT_VAR=FALSE
-      IBM_DB_HOME = paste(DOWNLOAD_DIR,"/clidriver",sep="")
-
+  IS_ENVIRONMENT_VAR=FALSE
+  if(!(nchar(env)==0) || dir.exists(paste(DOWNLOAD_DIR,"/clidriver",sep=""))){
+    if((nchar(env)==0)){
+      IBM_DB_HOME = DOWNLOAD_DIR
       Sys.setenv("IBM_DB_HOME"= IBM_DB_HOME)
-      IS_ENVIRONMENT_VAR = TRUE
+    }
+    IS_ENVIRONMENT_VAR = TRUE
   }
   else
   {
