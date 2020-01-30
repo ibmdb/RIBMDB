@@ -78,12 +78,11 @@ To uninstall node-RIBMDB from your system, just delete the RIBMDB or RIBMDB dire
 ## Need Help?
 
 If you encountered any issue with RIBMDB, first check for existing solution or
-work-around under `issues` or on google groups forum. Links are:   
+work-around under `issues` tab. Link for the same:   
     
-https://github.com/ibmdb/RIBMDB/issues    
-https://groups.google.com/forum/#!forum/RIBMDB   
+https://github.com/ibmdb/RIBMDB/issues
    
-If no solution found, you can open a new issue on github or start a new topic in google groups.
+If no solution found, you can open a new issue on github in this project under `Issues` tab.
 
 ## How to get RIBMDB instance?
 
