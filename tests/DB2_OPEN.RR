@@ -7,7 +7,7 @@ row.names(hills)[12] <- "Dollar ('$')"
 set.seed(1)
 options(digits.secs = 3)
 
-channel <- odbcConnect("dashdb","db2admin","gr8tcode!")
+channel <- odbcConnect("dashdb","foo","bar")
 if(!inherits(channel, "RODBC")) q("no")
 odbcGetInfo(channel)
 sqlTables(channel, schema="RIPLEY")

@@ -7,7 +7,7 @@ row.names(hills)[12] <- "Dollar ('$')"
 set.seed(1)
 options(digits.secs = 3)
 
-channel <- odbcDriverConnect("DATABASE=bjhadb;hostname=waldevdbclnxtst06.dev.rocketsoftware.com;PORT=60000;UID=newton;PWD=A2m8test")
+channel <- odbcDriverConnect("DATABASE=sample;hostname=dbhostname.xxx.com;PORT=60000;UID=foo;PWD=bar")
 if(!inherits(channel, "RODBC")) q("no")
 odbcGetInfo(channel)
 sqlTables(channel, schema="RIPLEY")
