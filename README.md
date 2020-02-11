@@ -39,12 +39,70 @@ For **Docker Linux Container**, use below commands:
 
 ### Important Environment Variables and Download Essentials 
 
-While installing, the driver downloads and installs the CLI driver from below URL if the same is not present in the system/environment variable.
+**WINDOWS**
 
-If you don't want the installer to download the CLI driver, you can download the same or copy from alternate source rather than below to your system's R.Home() directory.
-The path should look like `<R_HOME>/clidriver`
+- While installing, the driver downloads and installs the CLI driver from below URL if the same is not present in the system/environment variable.
 
-Else, Download the driver in your selected directory and set the `IBM_DB_HOME` Environment variable for the same to be used.
+- If you don't want the installer to download the CLI driver, you can download the same or copy from alternate source rather than below to your system's R.Home() directory.
+	The path should look like `<R_HOME>/clidriver`
+
+- Else, Download the driver in your selected directory and set the `IBM_DB_HOME` Environment variable for the same to be used.
+
+**LINUX**
+
+- Binary installer(.zip) is only available for WIN and MAC, not supported for linux.
+
+- General method of package installation is using the source.
+
+- Command to check the dependency of a Shared Object i.e. ".so" file
+```
+> ldd RIBMDB.so
+```
+
+- Command to install in another folder rather than defaul R LIB using -l(. means in the same directory where you are running the command else you can specify the directory where you want to install the LIBRARY))
+```
+> sudo R CMD INSTALL -l . RIBMDB_1.0-20.tar.gz --no-test-load
+```
+
+- Command to install a package without test load
+```
+> sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz --no-test-load
+```
+
+- Command to install a package with args to CONFIGURE
+```
+> sudo R CMD INSTALL -c --no-test-load  RIBMDB_1.0-20.tar.gz --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
+```
+
+- Command to test a connection
+```
+> db2cli validate -database "<dbname>:<HOSTNAME>:<PORT>" -user <UID> -passwd <PASSWORD> -connect
+```
+
+- Connnection variable sample for RR file for test
+```
+ "DATABASE=<dbname>;hostname=<HOSTNAME>;PORT=<PORT>;UID=****;PWD=*****"
+ ```
+
+- Command to run a R script i.e. Master.R in the PWD
+```
+> Rscript Master.R
+```
+
+- Command to run R script i.e. Master.R in "/work/foo/R/" directory
+```
+> Rscript /work/foo/R/Master.R
+```
+
+**NOTE:**
+
+Use `CLIDriver_Installer.R` to install the CLI driver from internet else if you already have the CLI driver installed, you can simply pass the same as argument i.e. --configure-args="IBM_DB_HOME=<CLI_DRIVER_PATH>" during RIBMDB package installation.
+
+- How to run the installer? 
+```
+> Rscript CLIDriver_Installer.R
+**Expected O/P: ** Installation Path which has to be used during RIBMDB installation in place of "CLI_DRIVER_PATH" in "configure-args"
+```
 
 ### <a name="downloadCli"></a> Download clidriver ([based on your platform & architecture](#systemDetails)) from the below IBM Hosted URL:
 > [DOWNLOAD CLI DRIVER](https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/)
@@ -78,12 +136,11 @@ To uninstall node-RIBMDB from your system, just delete the RIBMDB or RIBMDB dire
 ## Need Help?
 
 If you encountered any issue with RIBMDB, first check for existing solution or
-work-around under `issues` or on google groups forum. Links are:   
+work-around under `issues` tab. Link for the same:   
     
-https://github.com/ibmdb/RIBMDB/issues    
-https://groups.google.com/forum/#!forum/RIBMDB   
+https://github.com/ibmdb/RIBMDB/issues
    
-If no solution found, you can open a new issue on github or start a new topic in google groups.
+If no solution found, you can open a new issue on github in this project under `Issues` tab.
 
 ## How to get RIBMDB instance?
 
