@@ -41,55 +41,55 @@ For **Docker Linux Container**, use below commands:
 
 **WINDOWS**
 
-While installing, the driver downloads and installs the CLI driver from below URL if the same is not present in the system/environment variable.
+- While installing, the driver downloads and installs the CLI driver from below URL if the same is not present in the system/environment variable.
 
-If you don't want the installer to download the CLI driver, you can download the same or copy from alternate source rather than below to your system's R.Home() directory.
-The path should look like `<R_HOME>/clidriver`
+- If you don't want the installer to download the CLI driver, you can download the same or copy from alternate source rather than below to your system's R.Home() directory.
+	The path should look like `<R_HOME>/clidriver`
 
-Else, Download the driver in your selected directory and set the `IBM_DB_HOME` Environment variable for the same to be used.
+- Else, Download the driver in your selected directory and set the `IBM_DB_HOME` Environment variable for the same to be used.
 
 **LINUX**
 
--Binary installer(.zip) is only available for WIN and MAC, not supported for linux.
+- Binary installer(.zip) is only available for WIN and MAC, not supported for linux.
 
--General method of package installation is using the source.
+- General method of package installation is using the source.
 
--Command to check the dependency of a Shared Object i.e. ".so" file
+- Command to check the dependency of a Shared Object i.e. ".so" file
 ```
 > ldd RIBMDB.so
 ```
 
--Command to install in another folder rather than defaul R LIB using -l(. means in the same directory where you are running the command else you can specify the directory where you want to install the LIBRARY))
+- Command to install in another folder rather than defaul R LIB using -l(. means in the same directory where you are running the command else you can specify the directory where you want to install the LIBRARY))
 ```
 > sudo R CMD INSTALL -l . RIBMDB_1.0-20.tar.gz --no-test-load
 ```
 
--Command to install a package without test load
+- Command to install a package without test load
 ```
 > sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz --no-test-load
 ```
 
--Command to install a package with args to CONFIGURE
+- Command to install a package with args to CONFIGURE
 ```
 > sudo R CMD INSTALL -c --no-test-load  RIBMDB_1.0-20.tar.gz --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
 ```
 
--Command to test a connection
+- Command to test a connection
 ```
 > db2cli validate -database "sample:waldevdbclnxtst06.dev.rocketsoftware.com:60000" -user newton -passwd A2m8test -connect
 ```
 
--Connnection variable sample for RR file for test
+- Connnection variable sample for RR file for test
 ```
  "DATABASE=<dbname>;hostname=<HOSTNAME>;PORT=<PORT>;UID=****;PWD=*****"
  ```
 
--Command to run a R script i.e. Master.R in the PWD
+- Command to run a R script i.e. Master.R in the PWD
 ```
 > Rscript Master.R
 ```
 
--Command to run R script i.e. Master.R in "/work/foo/R/" directory
+- Command to run R script i.e. Master.R in "/work/foo/R/" directory
 ```
 > Rscript /work/foo/R/Master.R
 ```
@@ -98,7 +98,7 @@ Else, Download the driver in your selected directory and set the `IBM_DB_HOME` E
 
 Use `CLIDriver_Installer.R` to install the CLI driver from internet else if you already have the CLI driver installed, you can simply pass the same as argument i.e. --configure-args="IBM_DB_HOME=<CLI_DRIVER_PATH>" during RIBMDB package installation.
 
--How to run the installer? 
+- How to run the installer? 
 ```
 > Rscript CLIDriver_Installer.R
 **Expected O/P: ** Installation Path which has to be used during RIBMDB installation in place of "CLI_DRIVER_PATH" in "configure-args"
