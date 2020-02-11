@@ -393,7 +393,7 @@ sqlSave(channel, hills, "hills test", verbose=TRUE, fast=FALSE)
 sqlUpdate(channel, hills[11:15,], "hills test", verbose=TRUE, fast=FALSE)
 sqlDrop(channel, "hills test")
 
-A <- data.frame(a="?Latin-1 accented chars?: ?? ?? ?<? ?<?")
+A <- data.frame(a="«Latin-1 accented chars»: éè øØ å<Å æ<Æ")
 sqlDrop(channel, "A", errors = FALSE)
 sqlSave(channel, A, verbose=TRUE)
 sqlFetch(channel, "A")

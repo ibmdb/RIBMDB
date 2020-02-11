@@ -1,6 +1,5 @@
 % file RODBC/man/odbcDataSources.Rd
 % copyright (C) 2006-2013  B. D. Ripley
-% copyright (C) 2019-2021  Rocket Software
 %
 \name{odbcDataSources}
 \alias{odbcDataSources}
