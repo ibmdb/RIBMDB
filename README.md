@@ -76,7 +76,7 @@ For **Docker Linux Container**, use below commands:
 
 - Command to test a connection
 ```
-> db2cli validate -database "sample:waldevdbclnxtst06.dev.rocketsoftware.com:60000" -user newton -passwd A2m8test -connect
+> db2cli validate -database "<dbname>:<HOSTNAME>:<PORT>" -user <UID> -passwd <PASSWORD> -connect
 ```
 
 - Connnection variable sample for RR file for test
