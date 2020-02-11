@@ -53,7 +53,7 @@ install_R_ibm_db = function(installerURL)
     else if(platform == 'darwin')
     {
       if(grepl("64", arch)) {
-        installerfileURL = paste(installerURL , 'macos64_odbc_cli.tar.gz',sep="")
+       installerfileURL = paste(installerURL , 'macos64_odbc_cli.tar.gz',sep="")
       } else {
         cat(paste('Mac OS 32 bit not supported. Please use an ' ,
                   'x64 architecture.\n'))
@@ -91,7 +91,6 @@ install_R_ibm_db = function(installerURL)
     #}else{
      # INSTALLER_FILE = file_name
     #}
-
     cat(paste('Downloading DB2 ODBC CLI Driver from ' , installerfileURL,'...\n'))
     copyAndExtractCliDriver(installerfileURL,INSTALLER_FILE)
 
@@ -129,8 +128,4 @@ if(platform == 'windows') {
   }
 }
 
-
-
 install_R_ibm_db(installerURL)
-
-
