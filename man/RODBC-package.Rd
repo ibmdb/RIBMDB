@@ -1,5 +1,6 @@
 % file RODBC/man/RODBC-package.Rd
 % copyright (C) 1999-2013  M. Lapsley and B. D. Ripley
+% copyright (C) 2019-2021  Rocket Software
 %
 \name{RODBC-package}
 \alias{RODBC}

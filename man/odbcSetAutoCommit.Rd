@@ -1,5 +1,6 @@
 % file RODBC/man/odbcSetAutoCommit.Rd
 % copyright (C) 2005-2013  B. D. Ripley
+% copyright (C) 2019-2021  Rocket Software
 %
 \name{odbcSetAutoCommit}
 \alias{odbcSetAutoCommit}

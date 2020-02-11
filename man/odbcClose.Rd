@@ -1,6 +1,7 @@
 % file RODBC/man/odbcClose.Rd
 % copyright (C) 1999-2002  M. Lapsley
 % copyright (C) 2002-2013  B. D. Ripley
+% copyright (C) 2019-2021  Rocket Software
 %
 \name{odbcClose}
 \alias{odbcClose}

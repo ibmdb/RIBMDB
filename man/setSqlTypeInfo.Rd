@@ -1,5 +1,6 @@
 % file RODBC/man/sqlTypeInfo.Rd
 % copyright (C) 2004-2013  B. D. Ripley
+% copyright (C) 2019-2021  Rocket Software
 %
 \name{setSqlTypeInfo}
 \alias{setSqlTypeInfo}
