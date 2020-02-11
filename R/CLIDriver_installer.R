@@ -33,7 +33,7 @@ install_R_ibm_db = function(installerURL)
       Sys.setenv("IBM_DB_HOME"=IBM_DB_HOME)
     }
     IS_ENVIRONMENT_VAR = TRUE
-    cat(paste("Path to be Used while RIBMDB package installation <CLI_DRIVER_PATH>:",Sys.getenv("IBM_DB_HOME")))
+    cat(paste("Path to be Used while RIBMDB package installation <CLI_DRIVER_PATH>:",Sys.getenv("IBM_DB_HOME"),"\n\n"))
   }
   else
   {
@@ -118,7 +118,7 @@ if(platform == 'windows') {
     cat('Downloading and extraction of DB2 ODBC CLI Driver completed successfully... \n')
     IBM_DB_HOME = paste(DOWNLOAD_DIR, '/clidriver',sep="");
     Sys.setenv("IBM_DB_HOME"=IBM_DB_HOME)
-    cat(paste("Path to be Used while RIBMDB package installation <CLI_DRIVER_PATH>:",IBM_DB_HOME))
+    cat(paste("Path to be Used while RIBMDB package installation <CLI_DRIVER_PATH>:",IBM_DB_HOME,"\n\n"))
     #cat("Cleaning Installer files.")
     #Remove the installer file on successfull installation.
     invisible(file.remove(INSTALLER_FILE))
