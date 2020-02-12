@@ -69,9 +69,14 @@ For **Docker Linux Container**, use below commands:
 > sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz --no-test-load
 ```
 
-- Command to install a package with args to CONFIGURE
+- Command to install a package with args to CONFIGURE i.e. If you don't want the package installer to install the CLI driver (OR) You already have the CLI driver path set i.e. "/home/foo/bar/clidriver"
 ```
 > sudo R CMD INSTALL -c --no-test-load  RIBMDB_1.0-20.tar.gz --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
+```
+
+- Command to install a package with no args to CONFIGURE i.e. If you want the package installer to install the CLI driver based on LINUX version and Arch."
+```
+> sudo R CMD INSTALL -c --no-test-load  RIBMDB_1.0-20.tar.gz
 ```
 
 - Command to test a connection
