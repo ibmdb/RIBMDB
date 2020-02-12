@@ -24,7 +24,8 @@ runone <- function(f)
     0L
 }
 
-res = runone("C:\\Personal\\R\\RODBC_1.3-16\\RODBC\\tests\\DB2")
+res = runone("C:\\foo\\bar\\RIBMDB\\tests\\DB2")
+res = runone("/foo/bar/R/DB2")
 
 proc.time()
 
