@@ -24,7 +24,7 @@ install_R_ibm_db = function(installerURL)
   endian = .Platform$endian
   
   env = Sys.getenv("IBM_DB_HOME")
-  #cat(paste("ENvironment Variable IBM_DB_HOME:::::",env, "-- nchar:", nchar(env)))
+  
   IS_ENVIRONMENT_VAR=FALSE
   CLI_DIR=paste(DOWNLOAD_DIR,"/clidriver",sep="")
   if(!(nchar(env)==0) || dir.exists(CLI_DIR)){
@@ -33,7 +33,7 @@ install_R_ibm_db = function(installerURL)
       Sys.setenv("IBM_DB_HOME"=IBM_DB_HOME)
     }
     IS_ENVIRONMENT_VAR = TRUE
-    cat(paste("Path to be Used while RIBMDB package installation <CLI_DRIVER_PATH>:",Sys.getenv("IBM_DB_HOME"),"\n\n"))
+    cat(paste("<CLI_DRIVER_PATH>:",Sys.getenv("IBM_DB_HOME"),"\n\n"))
   }
   else
   {
@@ -53,7 +53,7 @@ install_R_ibm_db = function(installerURL)
     else if(platform == 'darwin')
     {
       if(grepl("64", arch)) {
-       installerfileURL = paste(installerURL , 'macos64_odbc_cli.tar.gz',sep="")
+        installerfileURL = paste(installerURL , 'macos64_odbc_cli.tar.gz',sep="")
       } else {
         cat(paste('Mac OS 32 bit not supported. Please use an ' ,
                   'x64 architecture.\n'))
@@ -105,7 +105,6 @@ copyAndExtractCliDriver = function(installerfileURL,INSTALLER_FILE) {
 
   # Using the "unzipper" module to extract the zipped "clidriver",
   # and on successful close, printing the license_agreement
-cat(paste("INSTALLER_FILE::",INSTALLER_FILE,"--DOWNLOAD_DIR::",DOWNLOAD_DIR))
 if(platform == 'windows') {
   extractCLIDriver = unzip(INSTALLER_FILE,exdir=DOWNLOAD_DIR)
 }else{
@@ -118,9 +117,7 @@ if(platform == 'windows') {
     cat('Downloading and extraction of DB2 ODBC CLI Driver completed successfully... \n')
     IBM_DB_HOME = paste(DOWNLOAD_DIR, '/clidriver',sep="");
     Sys.setenv("IBM_DB_HOME"=IBM_DB_HOME)
-    cat(paste("Path to be Used while RIBMDB package installation <CLI_DRIVER_PATH>:",IBM_DB_HOME,"\n\n"))
-    #cat("Cleaning Installer files.")
-    #Remove the installer file on successfull installation.
+    cat(paste("<CLI_DRIVER_PATH>:",IBM_DB_HOME,"\n\n"))
     invisible(file.remove(INSTALLER_FILE))
   }else{
     cat('Downloading and extraction of DB2 ODBC CLI Driver unsuccessful... \n')

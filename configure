@@ -2326,8 +2326,22 @@ fi
 if test "${with_odbc_include+set}" = set; then :
   withval=$with_odbc_include; odbc_include_path=$withval
 fi
+RODBC_CPPFLAGS="-I."
+LIBS=""
+if test  -n "${IBM_DB_HOME}"  ; then
+  RODBC_CPPFLAGS="-I${IBM_DB_HOME}/include -I."
+  LIBS="-L${IBM_DB_HOME}/lib -ldb2"
+else
+echo 'IBM_DB_HOME Not Set. Installing CLI Driver.....'
+  Rscript ./R/CLIDriver_installer.R 
+  echo 'CLI Driver Installed. Proceeding with package Installation...'
+  : ${R_HOME=`R RHOME`}
+  echo ${R_HOME}
+  RODBC_CPPFLAGS="-I${R_HOME}/clidriver/include -I."
+  IBM_DB_HOME="${R_HOME}/clidriver"
+  LIBS="-L${R_HOME}/clidriver/lib -ldb2"
+fi
 
-RODBC_CPPFLAGS="-I${IBM_DB_HOME}/include -I."
 if test  -n "$odbc_include_path"  ; then
    RODBC_CPPFLAGS="-I. -I${odbc_include_path}"
 else
@@ -2347,7 +2361,7 @@ if test "${with_odbc_lib+set}" = set; then :
   withval=$with_odbc_lib; odbc_lib_path=$withval
 fi
 
-LIBS="-L${IBM_DB_HOME}/lib -ldb2"
+#LIBS="-L${IBM_DB_HOME}/lib -ldb2"
 # if test  -n "$odbc_lib_path"  ; then
 #    LIBS="-L${odbc_lib_path} ${LIBS}"
 # else
