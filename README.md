@@ -23,6 +23,11 @@ Install a newer compiler or upgrade older one.
 
 - The latest R version using which `RIBMDB` is tested: 3.6.1
 
+- RIBMDB package Depends on 'httr' package. Make sure you have this installed post R installation i.e. from R prompt:
+```
+install.packages('httr')
+```
+
 ## Install
 
 You may install the package using R install command:
