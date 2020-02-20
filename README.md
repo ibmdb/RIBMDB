@@ -23,6 +23,11 @@ Install a newer compiler or upgrade older one.
 
 - The latest R version using which `RIBMDB` is tested: 3.6.1
 
+- RIBMDB package Depends on 'httr' package. Make sure you have this installed post R installation i.e. from R prompt:
+```
+install.packages('httr')
+```
+
 ## Install
 
 You may install the package using R install command:
@@ -97,6 +102,19 @@ For **Docker Linux Container**, use below commands:
 - Command to run R script i.e. Master.R in "/work/foo/R/" directory
 ```
 > Rscript /work/foo/R/Master.R
+```
+
+**MAC OS**
+- MAC is a UNIX based system so all the above commands for LINUX are applicable for MAC as well with an exception below for installation where argument for **host_alias** is mandatory.
+
+- Command to install a package with args to CONFIGURE i.e. If you don't want the package installer to install the CLI driver (OR) You already have the CLI driver path set i.e. "/home/foo/bar/clidriver"
+```
+> sudo R CMD INSTALL --no-staged-install RIBMDB_1.0-20.tar.gz --configure-args="host_alias=darwin15.6.0" --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
+```
+
+- Command to install a package with no args to CONFIGURE i.e. If you want the package installer to install the CLI driver based on LINUX version and Arch.
+```
+> sudo R CMD INSTALL --no-staged-install RIBMDB_1.0-20.tar.gz --configure-args="host_alias=darwin15.6.0"
 ```
 
 **NOTE:**
