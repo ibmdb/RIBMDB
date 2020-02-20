@@ -10,6 +10,7 @@ license_agreement = paste('\n\n****************************************\nYou are
 
 platform = .Platform$OS.type
 arch = .Platform$r_arch
+
 if((nchar(arch)==0)){
   arch = R.version$arch
 }
@@ -27,6 +28,7 @@ install_R_ibm_db = function(installerURL)
   
   IS_ENVIRONMENT_VAR=FALSE
   CLI_DIR=paste(DOWNLOAD_DIR,"/clidriver",sep="")
+  RIBMDB_DIR=paste(DOWNLOAD_DIR,"/library/RIBMDB",sep="")
   if(!(nchar(env)==0) || dir.exists(CLI_DIR)){
     if((nchar(env)==0)){
       IBM_DB_HOME = CLI_DIR
@@ -34,6 +36,15 @@ install_R_ibm_db = function(installerURL)
     }
     IS_ENVIRONMENT_VAR = TRUE
     cat(paste("<CLI_DRIVER_PATH>:",Sys.getenv("IBM_DB_HOME"),"\n\n"))
+    if(dir.exists(RIBMDB_DIR)){
+      if(grepl('darwin',R.version$os)){
+        nameToolCommand = paste("install_name_tool -change libdb2.dylib ",
+                                CLI_DIR, "/lib/libdb2.dylib ", 
+                                RIBMDB_DIR, "/libs/RIBMDB.so",sep="")
+        cat(nameToolCommand)
+        system(nameToolCommand)
+      }
+    }
   }
   else
   {
@@ -44,20 +55,21 @@ install_R_ibm_db = function(installerURL)
     }
     else if(platform == 'linux' || platform == 'unix')
     {
-      if(grepl("64", arch)) {
-        installerfileURL = paste(installerURL , 'linuxx64_odbc_cli.tar.gz',sep="")
-      } else {
-        installerfileURL = paste(installerURL , 'linuxia32_odbc_cli.tar.gz',sep="")
-      }
-    }
-    else if(platform == 'darwin')
-    {
-      if(grepl("64", arch)) {
-        installerfileURL = paste(installerURL , 'macos64_odbc_cli.tar.gz',sep="")
-      } else {
-        cat(paste('Mac OS 32 bit not supported. Please use an ' ,
-                  'x64 architecture.\n'))
-        return;
+      if(grepl('darwin',R.version$os))
+      {
+        if(grepl("64", arch)) {
+          installerfileURL = paste(installerURL , 'macos64_odbc_cli.tar.gz',sep="")
+        } else {
+          cat(paste('Mac OS 32 bit not supported. Please use an ' ,
+                    'x64 architecture.\n'))
+          return;
+        }
+      }else{
+        if(grepl("64", arch)) {
+          installerfileURL = paste(installerURL , 'linuxx64_odbc_cli.tar.gz',sep="")
+        } else {
+          installerfileURL = paste(installerURL , 'linuxia32_odbc_cli.tar.gz',sep="")
+        }
       }
     }
     else if(platform == 'aix')

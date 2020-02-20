@@ -99,6 +99,19 @@ For **Docker Linux Container**, use below commands:
 > Rscript /work/foo/R/Master.R
 ```
 
+**MAC OS**
+- MAC is a UNIX based system so all the above commands for LINUX are applicable for MAC as well with an exception below for installation where argument for **host_alias** is mandatory.
+
+- Command to install a package with args to CONFIGURE i.e. If you don't want the package installer to install the CLI driver (OR) You already have the CLI driver path set i.e. "/home/foo/bar/clidriver"
+```
+> sudo R CMD INSTALL --no-staged-install RIBMDB_1.0-20.tar.gz --configure-args="host_alias=darwin15.6.0" --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
+```
+
+- Command to install a package with no args to CONFIGURE i.e. If you want the package installer to install the CLI driver based on LINUX version and Arch.
+```
+> sudo R CMD INSTALL --no-staged-install RIBMDB_1.0-20.tar.gz --configure-args="host_alias=darwin15.6.0"
+```
+
 **NOTE:**
 
 Use `CLIDriver_Installer.R` to install the CLI driver from internet else if you already have the CLI driver installed, you can simply pass the same as argument i.e. --configure-args="IBM_DB_HOME=<CLI_DRIVER_PATH>" during RIBMDB package installation.
