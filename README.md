@@ -27,10 +27,18 @@ Install a newer compiler or upgrade older one.
 ```
 install.packages('httr')
 ```
+
 ## Build
 You can build the package using command:
+
+**Windows**
 ```
 Rcmd.exe build <Master Folder of Project. Make sure the name of same is different than RIBMDB>
+```
+
+**UNIX**
+```
+sudo R CMD build <Master Folder of Project. Make sure the name of same is different than RIBMDB>
 ```
 
 ## Install
@@ -38,7 +46,6 @@ Rcmd.exe build <Master Folder of Project. Make sure the name of same is differen
 You may install the package using R install command for source package i.e. .tar.gz:
 
 **Windows**
-
 ```
 Rcmd.exe INSTALL RIBMDB_1.0-20.tar.gz
 ```
@@ -58,7 +65,7 @@ Rcmd.exe INSTALL <Master Folder of RIBMDB Project. Make sure the name of same is
 
 **UNIX**
 ```
-sudo R CMD build <Master Folder of RIBMDB Project. Make sure the name of same is different than RIBMDB like RIBMDB-src>
+sudo R CMD INSTALL <Master Folder of RIBMDB Project. Make sure the name of same is different than RIBMDB like RIBMDB-src>
 ```
 
 For **Docker Linux Container**, use below commands:
