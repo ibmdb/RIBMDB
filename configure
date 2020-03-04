@@ -2333,9 +2333,11 @@ if test  -n "${IBM_DB_HOME}"  ; then
   LIBS="-L${IBM_DB_HOME}/lib -ldb2"
 else
 echo 'IBM_DB_HOME Not Set. Installing CLI Driver.....'
-  Rscript ./R/CLIDriver_installer.R 
-  echo 'CLI Driver Installed. Proceeding with package Installation...'
   : ${R_HOME=`R RHOME`}
+  
+  ${R_HOME}/bin/Rscript ./R/CLIDriver_installer.R 
+  echo 'CLI Driver Installed. Proceeding with package Installation...'
+  
   echo ${R_HOME}
   RODBC_CPPFLAGS="-I${R_HOME}/clidriver/include -I."
   IBM_DB_HOME="${R_HOME}/clidriver"

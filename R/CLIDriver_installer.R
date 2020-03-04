@@ -64,6 +64,13 @@ install_R_ibm_db = function(installerURL)
                     'x64 architecture.\n'))
           return;
         }
+      }else if(grepl('aix',R.version$os))
+      {
+        if(grepl("32", system("bootinfo -y"))) {
+            installerfileURL = paste(installerURL , 'aix32_odbc_cli.tar.gz',sep="")
+        } else {
+          installerfileURL = paste(installerURL , 'aix64_odbc_cli.tar.gz',sep="")
+        }
       }else{
         if(grepl("64", arch)) {
           installerfileURL = paste(installerURL , 'linuxx64_odbc_cli.tar.gz',sep="")
@@ -71,21 +78,7 @@ install_R_ibm_db = function(installerURL)
           installerfileURL = paste(installerURL , 'linuxia32_odbc_cli.tar.gz',sep="")
         }
       }
-    }
-    else if(platform == 'aix')
-    {
-      if(arch == 'ppc')
-      {
-        installerfileURL = paste(installerURL , 'aix32_odbc_cli.tar.gz',sep="")
-      }
-      else
-      {
-        installerfileURL = paste(installerURL , 'aix64_odbc_cli.tar.gz',sep="")
-      }
-    }
-
-    else
-    {
+    }else{
       installerfileURL = paste(installerURL , platform , arch ,
                                '_odbc_cli.tar.gz',sep="")
     }
@@ -120,7 +113,7 @@ copyAndExtractCliDriver = function(installerfileURL,INSTALLER_FILE) {
 if(platform == 'windows') {
   extractCLIDriver = unzip(INSTALLER_FILE,exdir=DOWNLOAD_DIR)
 }else{
-  cat("This is linux system")
+  cat("This is unix system \n")
   extractCLIDriver = untar(INSTALLER_FILE,exdir=DOWNLOAD_DIR)
 }
 
