@@ -28,13 +28,46 @@ Install a newer compiler or upgrade older one.
 install.packages('httr')
 ```
 
+## Build
+You can build the package using command:
+
+**Windows**
+```
+Rcmd.exe build <Master Folder of Project. Make sure the name of same is different than RIBMDB>
+```
+
+**UNIX**
+```
+sudo R CMD build <Master Folder of Project. Make sure the name of same is different than RIBMDB>
+```
+
 ## Install
 
-You may install the package using R install command:
+You may install the package using R install command for source package i.e. .tar.gz:
 
+**Windows**
 ```
 Rcmd.exe INSTALL RIBMDB_1.0-20.tar.gz
 ```
+
+**UNIX**
+```
+sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz
+```
+
+You can install the package directly from source folder as well using below command:
+
+**Windows**
+
+```
+Rcmd.exe INSTALL <Master Folder of RIBMDB Project. Make sure the name of same is different than RIBMDB like RIBMDB-src>
+```
+
+**UNIX**
+```
+sudo R CMD INSTALL <Master Folder of RIBMDB Project. Make sure the name of same is different than RIBMDB like RIBMDB-src>
+```
+
 For **Docker Linux Container**, use below commands:
 ```
 *******
@@ -116,6 +149,36 @@ For **Docker Linux Container**, use below commands:
 ```
 > sudo R CMD INSTALL --no-staged-install RIBMDB_1.0-20.tar.gz --configure-args="host_alias=darwin15.6.0"
 ```
+
+**AIX**
+- AIX is a UNIX based system so all the above commands for LINUX are applicable for AIX as well with few exceptions and notes as follows:
+
+- Make sure you have YUM installed on your AIX machine. This facilitates R and other dependent softwares installation rather than doing the same manually from AIX toolbox. YUM installation steps, R RPM and other RPMs are available in IBM toolbox link: https://www.ibm.com/support/pages/node/883796
+
+- Command to install a package with args to CONFIGURE i.e. If you don't want the package installer to install the CLI driver (OR) You already have the CLI driver path set i.e. "/home/foo/bar/clidriver"
+```
+> sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
+```
+
+- Command to install a package with no args to CONFIGURE i.e. If you want the package installer to install the CLI driver based on LINUX version and Arch.
+```
+> sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz
+```
+
+- R 32 bit and 64 bit version can be installed on AIX 64 bit machine. Make sure the R/bin path is pointing to 64 bit installation on 64 bit machine i.e. /opt/freeware/lib64/R/bin.
+
+- make sure gtar is in available in /usr/bin location else use below command to create a link to gtar installation:
+```
+sudo ln -s /wsdb/oemtools/aixbin/gtar /usr/bin/gtar
+```
+
+- Make sure you have curl and curl-devel rpms installed for successfull installation of httr package.
+
+- There is a known issue with httr package installation on 64bit R (Fix is expected soon as per IBM) because of some problem with latest mpfr rpm hence remove it and then retry httr package installation.
+```
+> sudo rm -rf /opt/freeware/lib64/libmpfr.a
+```
+
 
 **NOTE:**
 
