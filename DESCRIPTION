@@ -8,7 +8,8 @@ Title: DB2 Database Access
 Description: An ODBC database interface for DB2.
 SystemRequirements: An ODBC3 driver manager and drivers.
 Depends: R (>= 3.0.0),httr
-Imports: stats
+Imports: methods, DBI, stats
+Collate: 'RODBCDBI.R' 'RODBC.R' 'ODBCConnection.R' 'ODBCDriver.R' 'ODBCResult.R' 'TypeInfo.R' 'sql.R' 'win.R' 'CLIDriver_installer.R'
 LazyLoad: yes
 Biarch: yes
 License: GPL-2 | GPL-3

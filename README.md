@@ -19,13 +19,15 @@ Install a newer compiler or upgrade older one.
 
 - On distributed platforms, you do need not to install any Db2 ODBC client driver for connectivity. `RIBMDB` itself downloads and installs an odbc/cli driver from IBM website during installation. Just install `RIBMDB` and it is ready for use.
 
-- Recommended version of R is >= V3.X. to install `RIBMDB` on Windows.
+- **Recommended version of R is >= V3.X. to install `RIBMDB`.**
 
-- The latest R version using which `RIBMDB` is tested: 3.6.1
+- **The latest R version using which `RIBMDB` is tested: 3.6.1**
 
 - RIBMDB package Depends on 'httr' package. Make sure you have this installed post R installation i.e. from R prompt:
 ```
 install.packages('httr')
+install.packages('DBI')
+install.packages('pool')
 ```
 
 ## Build
@@ -205,6 +207,126 @@ Use `CLIDriver_Installer.R` to install the CLI driver from internet else if you 
 |              |  x32           |nt32_odbc_cli.zip        |  Yes         |
 
 
+## Connection Pooling
+
+Connection pooling is supported using DBI implementation and using "POOL" package as below:
+### Context:
+This package is mainly for connection pooling support for RIBMDB in relation with "pool" package. Check below link for details:
+
+- https://db.rstudio.com/pool/
+- https://www.rdocumentation.org/packages/pool/versions/0.1.4.3/topics/Pool
+- https://shiny.rstudio.com/articles/pool-basics.html
+
+### Example - 1
+```R
+#Load library
+library(DBI)
+library(RIBMDBDBI)
+
+# At first, we make a sample table using RODBC package
+con <- dbConnect(RODBCDBI::ODBC(), 'foodb','bar.fly.com',12345,'guest','guest')
+(or)
+con <- function()
+{
+  dbname <- 'foodb'
+  host <- 'bar.fly.com'
+  port <- 12345
+  uid <- 'guest'
+  pwd <- 'guest'
+  dbConnect(RODBCDBI::ODBC(), dbname,host,port,uid,pwd)
+}
+
+#Show table lists
+dbListTables(con)
+
+#Add new tables(iris, USArrests)
+dbWriteTable(con, "USArrests", USArrests)
+dbWriteTable(con, "iris", iris)
+
+#Show table again to check that the above tables are added correctly.
+dbListTables(con)
+
+#Show the columns(fields) of iris table
+dbListFields(con, "iris")
+
+#Get the entire contents of iris and USArrests tables
+dbReadTable(con, "iris")
+dbReadTable(con, "USArrests")
+
+# You can fetch all results by SQL:
+res <- dbSendQuery(con, "SELECT * FROM USArrests")
+dbFetch(res)
+# ...Or indicate its size of the row.
+dbFetch(res, n=3)
+
+# If you want to know the only row size of your query, you can use dbGetRowCount
+# Or you can get all result at once by dbGetQuery
+dbGetRowCount(res, "SELECT * FROM USArrests")
+
+# You can get the column information of your query.(not implemented completely)
+dbColumnInfo(res)
+
+# Clear the result
+dbClearResult(res)
+
+# Disconnect from the database
+dbDisconnect(con)
+```
+### Example - 2
+
+```R
+# load pool Library
+library(pool)
+
+# Create pool object. This will give you a connection of pool to be used instead of individual connection.
+ 
+  pool <- dbPool(
+    drv = RODBCDBI::ODBC(),
+    dbname = "foodb",
+    host = "foo.bar.com",
+    port = 60000,
+    user = "guest",
+    password = "guest"
+  )
+  
+# Create table.
+  dbWriteTable(pool, "iris", iris, overwrite=TRUE)
+
+# Query Table  
+  dbGetQuery(pool, "SELECT * from iris;")
+  
+# Drop Table
+  dbRemoveTable(pool, "iris")
+  
+# Get connection from pool
+	conn <- poolCheckout(pool)
+	
+# For above DBI APIs you can pass connection instead of pool i.e.
+	dbWriteTable(conn, "iris", iris, overwrite=TRUE)
+  
+# You can get the channel and call the RIBMDB ODBC APIs directly.
+	channel<-conn@odbc  
+	Atest <-
+		data.frame(x = c(paste(1:100, collapse="+"), letters[2:4]), rn=1:4)
+	sqlDrop(channel, "Atest", errors = FALSE)
+	colspec <- list(character="varchar(1000)", double="double",
+                 integer="integer", logical="varchar(5)")
+	sqlSave(channel, Atest, typeInfo = colspec)
+  
+
+# Return the connection to pool once done.
+	poolReturn(conn)
+	
+# Close the pool once done.
+  poolClose(pool)
+
+```
+
+
+## Acknowledgements
+
+Many thanks to Brian D. Ripley, Michael Lapsley since this package is a wrapper of RIBMDB package built on [RODBC package](https://cran.r-project.org/package=RODBC) & Nagi Teramo since [RODBCDBI package](https://cran.r-project.org/web/packages/RODBCDBI/index.html) is used as reference/base code.
+
 
 
 ## Quick Example
@@ -216,7 +338,7 @@ channel <- odbcConnect("<dbname>","<uid>","<pwd>")
 
 ## Un-Install
 
-To uninstall node-RIBMDB from your system, just delete the RIBMDB or RIBMDB directory.
+To uninstall RIBMDB package from your system, just delete the RIBMDB directory from R home library.
 
 
 ## Need Help?
@@ -249,6 +371,7 @@ Standard R debugging. Refer https://support.rstudio.com/hc/en-us/articles/205612
 * Michael Lapsley
 * Rocket Software
 * IBM
+* Nagi Teramo
 
 ## Contributing to the RIBMDB
 
@@ -258,26 +381,3 @@ Standard R debugging. Refer https://support.rstudio.com/hc/en-us/articles/205612
 Contributor should add a reference to the DCO sign-off as comment in the pull request(example below):
 DCO 1.1 Signed-off-by: Random J Developer <random@developer.org>
 ```
-
-## License
-
-Copyright (c) 2002 Brian Ripley <ripley@stats.ox.ac.uk> & Michael Lapsley
-
-Copyright (c) 2019 IBM Corporation
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of 
-this software and associated documentation files (the "Software"), to deal in 
-the Software without restriction, including without limitation the rights to 
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER 
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

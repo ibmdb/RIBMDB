@@ -27,7 +27,7 @@ install_R_ibm_db = function(installerURL)
   env = Sys.getenv("IBM_DB_HOME")
   
   IS_ENVIRONMENT_VAR=FALSE
-  CLI_DIR=paste(DOWNLOAD_DIR,"/clidriver",sep="")
+  CLI_DIR=paste(DOWNLOAD_DIR,"/library/RIBMDB_CLI/clidriver",sep="")
   RIBMDB_DIR=paste(DOWNLOAD_DIR,"/library/RIBMDB",sep="")
   if(!(nchar(env)==0) || dir.exists(CLI_DIR)){
     if((nchar(env)==0)){
@@ -110,6 +110,8 @@ copyAndExtractCliDriver = function(installerfileURL,INSTALLER_FILE) {
 
   # Using the "unzipper" module to extract the zipped "clidriver",
   # and on successful close, printing the license_agreement
+  DOWNLOAD_DIR=paste(DOWNLOAD_DIR,"/library/RIBMDB_CLI",sep="")
+  cat(paste("\nDOWNLOAD_DIR:-->",DOWNLOAD_DIR))
 if(platform == 'windows') {
   extractCLIDriver = unzip(INSTALLER_FILE,exdir=DOWNLOAD_DIR)
 }else{
