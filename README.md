@@ -27,6 +27,7 @@ Install a newer compiler or upgrade older one.
 ```
 install.packages('httr')
 install.packages('DBI')
+NOTE: for MACOS download the MACOS binary from "https://cran.r-project.org/web/packages/DBI/index.html" and install the same using "R CMD INSTALL DBI_1.1.0.tgz".
 install.packages('pool')
 ```
 
