@@ -29,6 +29,8 @@ install.packages('httr')
 install.packages('DBI')
 NOTE: for MACOS download the MACOS binary from "https://cran.r-project.org/web/packages/DBI/index.html" and install the same using "R CMD INSTALL DBI_1.1.0.tgz".
 install.packages('pool')
+NOTE: For AIX, make sure that before you install the POOL package, appropriate version of gcc-c++ rpm is installed on your AIX box i.e. e.g. sudo rpm -i gcc-cplusplus-8.3.0-1.aix6.1.ppc.rpm
+
 ```
 
 ## Build
