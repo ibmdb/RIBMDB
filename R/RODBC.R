@@ -37,7 +37,6 @@ odbcGetErrMsg <- function(channel)
 {
     if(!odbcValidChannel(channel))
        stop("first argument is not an open RODBC channel")
-  cat("first argument is an open RODBC channel")
     err <- .Call(C_RODBCGetErrMsg, attr(channel, "handle_ptr"))
     .Call(C_RODBCClearError, attr(channel, "handle_ptr"))
     return(err)
@@ -74,11 +73,11 @@ odbcReConnect <- function(channel, ...)
 }
 
 
-odbcConnect <- function (dsn, uid = "", pwd = "", ...)
+odbcConnect <- function (dbname,host,port, uid = "", pwd = "", ...)
 {
-    Call <- match.call(); Call$uid <- Call$pwd <- NULL
+    Call <- match.call(); Call$host <- Call$port <- Call$uid <- Call$pwd <- NULL
     Call[[1]] <- quote(RIBMDB::odbcDriverConnect)
-    st <- paste("DSN=", dsn, sep="")
+    st <- paste("DATABASE=", dbname,";hostname=",host,";port=",port, sep="")
     if(nchar(uid)) st <- paste(st, ";UID=", uid, sep="")
     if(nchar(pwd)) st <- paste(st, ";PWD=", pwd, sep="")
     Call[[2]] <- st; names(Call)[2] <- ""

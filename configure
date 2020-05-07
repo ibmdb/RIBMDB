@@ -2339,9 +2339,9 @@ echo 'IBM_DB_HOME Not Set. Installing CLI Driver.....'
   echo 'CLI Driver Installed. Proceeding with package Installation...'
   
   echo ${R_HOME}
-  RODBC_CPPFLAGS="-I${R_HOME}/clidriver/include -I."
-  IBM_DB_HOME="${R_HOME}/clidriver"
-  LIBS="-L${R_HOME}/clidriver/lib -ldb2"
+  RODBC_CPPFLAGS="-I${R_HOME}/library/RIBMDB_CLI/clidriver/include -I."
+  IBM_DB_HOME="${R_HOME}/library/RIBMDB_CLI/clidriver"
+  LIBS="-L${R_HOME}/library/RIBMDB_CLI/clidriver/lib -ldb2"
 fi
 
 if test  -n "$odbc_include_path"  ; then

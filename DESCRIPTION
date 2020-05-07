@@ -1,14 +1,15 @@
 Package: RIBMDB
 Version: 1.0-20
 Revision: $Rev: 3500 $
-Date: 2019-09-02
+Date: 2020-11-03
 Authors@R: c(person("ROCKET", "SOFTWARE", role = c("aut", "cre"),
                     email = "bkumar@rocketsoftware.com"))
 Title: DB2 Database Access
 Description: An ODBC database interface for DB2.
 SystemRequirements: An ODBC3 driver manager and drivers.
 Depends: R (>= 3.0.0),httr
-Imports: stats
+Imports: methods, DBI, stats
+Collate: 'RODBCDBI.R' 'RODBC.R' 'ODBCConnection.R' 'ODBCDriver.R' 'ODBCResult.R' 'TypeInfo.R' 'sql.R' 'win.R' 'CLIDriver_installer.R'
 LazyLoad: yes
 Biarch: yes
 License: GPL-2 | GPL-3
