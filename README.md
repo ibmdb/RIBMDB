@@ -52,12 +52,12 @@ You may install the package using R install command for source package i.e. .tar
 
 **Windows**
 ```
-Rcmd.exe INSTALL RIBMDB_1.0-20.tar.gz
+Rcmd.exe INSTALL RIBMDB_1.0-24.tar.gz
 ```
 
 **UNIX**
 ```
-sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz
+sudo R CMD INSTALL RIBMDB_1.0-24.tar.gz
 ```
 
 You can install the package directly from source folder as well using below command:
@@ -104,22 +104,22 @@ For **Docker Linux Container**, use below commands:
 
 - Command to install in another folder rather than defaul R LIB using -l(. means in the same directory where you are running the command else you can specify the directory where you want to install the LIBRARY))
 ```
-> sudo R CMD INSTALL -l . RIBMDB_1.0-20.tar.gz --no-test-load
+> sudo R CMD INSTALL -l . RIBMDB_1.0-24.tar.gz --no-test-load
 ```
 
 - Command to install a package without test load
 ```
-> sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz --no-test-load
+> sudo R CMD INSTALL RIBMDB_1.0-24.tar.gz --no-test-load
 ```
 
 - Command to install a package with args to CONFIGURE i.e. If you don't want the package installer to install the CLI driver (OR) You already have the CLI driver path set i.e. "/home/foo/bar/clidriver"
 ```
-> sudo R CMD INSTALL -c --no-test-load  RIBMDB_1.0-20.tar.gz --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
+> sudo R CMD INSTALL -c --no-test-load  RIBMDB_1.0-24.tar.gz --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
 ```
 
 - Command to install a package with no args to CONFIGURE i.e. If you want the package installer to install the CLI driver based on LINUX version and Arch.
 ```
-> sudo R CMD INSTALL -c --no-test-load  RIBMDB_1.0-20.tar.gz
+> sudo R CMD INSTALL -c --no-test-load  RIBMDB_1.0-24.tar.gz
 ```
 
 - Command to test a connection
@@ -147,12 +147,12 @@ For **Docker Linux Container**, use below commands:
 
 - Command to install a package with args to CONFIGURE i.e. If you don't want the package installer to install the CLI driver (OR) You already have the CLI driver path set i.e. "/home/foo/bar/clidriver"
 ```
-> sudo R CMD INSTALL --no-staged-install RIBMDB_1.0-20.tar.gz --configure-args="host_alias=darwin15.6.0" --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
+> sudo R CMD INSTALL --no-staged-install RIBMDB_1.0-24.tar.gz --configure-args="host_alias=darwin15.6.0" --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
 ```
 
 - Command to install a package with no args to CONFIGURE i.e. If you want the package installer to install the CLI driver based on LINUX version and Arch.
 ```
-> sudo R CMD INSTALL --no-staged-install RIBMDB_1.0-20.tar.gz --configure-args="host_alias=darwin15.6.0"
+> sudo R CMD INSTALL --no-staged-install RIBMDB_1.0-24.tar.gz --configure-args="host_alias=darwin15.6.0"
 ```
 
 **AIX**
@@ -162,12 +162,12 @@ For **Docker Linux Container**, use below commands:
 
 - Command to install a package with args to CONFIGURE i.e. If you don't want the package installer to install the CLI driver (OR) You already have the CLI driver path set i.e. "/home/foo/bar/clidriver"
 ```
-> sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
+> sudo R CMD INSTALL RIBMDB_1.0-24.tar.gz --configure-args="IBM_DB_HOME=/home/foo/bar/clidriver"
 ```
 
 - Command to install a package with no args to CONFIGURE i.e. If you want the package installer to install the CLI driver based on LINUX version and Arch.
 ```
-> sudo R CMD INSTALL RIBMDB_1.0-20.tar.gz
+> sudo R CMD INSTALL RIBMDB_1.0-24.tar.gz
 ```
 
 - R 32 bit and 64 bit version can be installed on AIX 64 bit machine. Make sure the R/bin path is pointing to 64 bit installation on 64 bit machine i.e. /opt/freeware/lib64/R/bin.
@@ -328,7 +328,7 @@ library(pool)
 
 ## Acknowledgements
 
-Many thanks to Brian D. Ripley, Michael Lapsley since this package is a wrapper of RIBMDB package built on [RODBC package](https://cran.r-project.org/package=RODBC) & Nagi Teramo since [RODBCDBI package](https://cran.r-project.org/web/packages/RODBCDBI/index.html) is used as reference/base code.
+Many thanks to Brian D. Ripley, Michael Lapsley since this package is a wrapper of RIBMDB package built on [RODBC package](https://cran.r-project.org/package=RODBC) & Nagi Teramo since [RODBCDBI package](<link href="https://cran.r-project.org/web/packages/RODBCDBI/index.html" rel="canonical" />) is used as reference/base code.
 
 
 
