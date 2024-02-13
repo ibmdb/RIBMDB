@@ -1,9 +1,9 @@
 Package: RIBMDB
-Version: 1.0-20
+Version: 1.0-24
 Revision: $Rev: 3500 $
 Date: 2020-11-03
 Authors@R: c(person("ROCKET", "SOFTWARE", role = c("aut", "cre"),
-                    email = "bkumar@rocketsoftware.com"))
+                    email = "vmathur@rocketsoftware.com"))
 Title: DB2 Database Access
 Description: An ODBC database interface for DB2.
 SystemRequirements: An ODBC3 driver manager and drivers.
@@ -16,6 +16,6 @@ License: GPL-2 | GPL-3
 NeedsCompilation: yes
 Packaged: 2020-01-22 06:32:03 UTC
 Author: ROCKET SOFTWARE [aut, cre]
-Maintainer: ROCKET SOFTWARE <bkumar@rocketsoftware.com>
+Maintainer: ROCKET SOFTWARE <vmathur@rocketsoftware.com>
 Repository: CRAN
 Date/Publication: 2020-01-23 05:28:45 UTC

@@ -1,12 +1,16 @@
 library(DBI)
 library(pool)
+
+  UID <- Sys.getenv("DB2_USER")
+  PASSWD <- Sys.getenv("DB2_PASSWD")
+
   pool <- dbPool(
     drv = RIBMDB::ODBC(),
-    dbname = "bjhadb",
+    dbname = "SAMPLE",
     host = "waldevdbclnxtst06.dev.rocketsoftware.com",
     port = 60000,
-    user = "newton",
-    password = "A2m8test"
+    user = UID,
+    password = PASSWD
   )
-  dbGetQuery(pool, "SELECT * from priyankatestnew;")
+  dbGetQuery(pool, "SELECT * from table;")
   poolClose(pool)
